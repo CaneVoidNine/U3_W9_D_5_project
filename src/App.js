@@ -2,8 +2,8 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyNavbar from "./components/MyNavbar";
 import MyTitle from "./components/MyTitle";
-import SingleCarousel from "./components/SingleCarousel";
 import MyFooter from "./components/MyFooter";
+import SingleCarousel from "./components/SingleCarousel";
 
 function App() {
   return (
@@ -11,12 +11,14 @@ function App() {
       style={{
         backgroundColor: "#000",
         color: "white",
-        height: "120vh",
+        height: "100%",
       }}
     >
       <MyNavbar />
       <MyTitle />
-      <SingleCarousel />
+      <SingleCarousel search="Action" />
+      <SingleCarousel search="Anime" />
+      <SingleCarousel search="Horror" />
       <MyFooter />
     </div>
   );
