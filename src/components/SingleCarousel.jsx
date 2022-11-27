@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import { Carousel, Container, Row, Col } from "react-bootstrap";
 import movie from "../media/media0.jpg";
 export default class SingleCarousel extends Component {
+  state = {
+    isLoading: true,
+    isError: false,
+    movies: [],
+  };
+
   render() {
     return (
       <div>
