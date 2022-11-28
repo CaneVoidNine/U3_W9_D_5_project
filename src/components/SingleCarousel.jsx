@@ -9,7 +9,7 @@ export default class SingleCarousel extends Component {
   };
   fetchMovies = async () => {
     try {
-      let movieList = `http://www.omdbapi.com/?apikey=2ba0b717&s=${encodeURIComponent(
+      let movieList = `http://www.omdbapi.com/?apikey=9f9fcef2&s=${encodeURIComponent(
         this.props.search.toLowerCase()
       )}`;
       let response = await fetch(movieList);
