@@ -61,7 +61,7 @@ export default class SingleCarousel extends Component {
   render() {
     return (
       <div className="movie-gallery m-2">
-        <h3 className="text-light mt-2 mb-2">{this.props.search}</h3>
+        <h5 className="text-light mt-2 mb-2">{this.props.search}</h5>
 
         {this.state.isLoading && <Spinner></Spinner>}
 
