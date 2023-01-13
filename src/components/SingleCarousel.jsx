@@ -34,7 +34,7 @@ const SingleCarousel = () => {
       <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
         {movies.map((movie) => (
           <a className="m-2" href="#">
-            <img style={{ width: "30rem" }} src={movie.poster} alt="" />
+            <img style={{ maxWidth: "20rem" }} src={movie.poster} alt="" />
           </a>
         ))}
       </Row>
