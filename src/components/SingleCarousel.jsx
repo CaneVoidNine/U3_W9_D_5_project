@@ -33,12 +33,12 @@ const SingleCarousel = () => {
       <h3 className="m-3">Popular on Netflix:</h3>
       <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
         {movies.map((movie) => (
-          <>
+          <Col>
             <a className="m-1" href="#">
               <img style={{ maxWidth: "20rem" }} src={movie.poster} alt="" />
             </a>
             <h5>{movie.title}</h5>
-          </>
+          </Col>
         ))}
       </Row>
     </>
