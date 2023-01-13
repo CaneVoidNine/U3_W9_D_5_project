@@ -1,92 +1,45 @@
 import React, { Component } from "react";
 import { Carousel, Spinner, Row, Col } from "react-bootstrap";
 import Error from "./Error";
-export default class SingleCarousel extends Component {
-  state = {
-    isLoading: true,
-    isError: false,
-    movies: [],
-  };
-  fetchMovies = async () => {
+import { useEffect, useState } from "react";
+const SingleCarousel = () => {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState([]);
+
+  const movieSearch = async () => {
     try {
-      let movieList = `http://www.omdbapi.com/?apikey=9f9fcef2&s=${encodeURIComponent(
-        this.props.search.toLowerCase()
-      )}`;
-      let response = await fetch(movieList);
-
-      if (response.ok) {
-        let data = await response.json();
-
-        let numOfMovies = 6;
-
-        const movieData = data.Search.reduce((resultArray, item, index) => {
-          const movieIndex = Math.floor(index / numOfMovies);
-
-          if (!resultArray[movieIndex]) {
-            resultArray[movieIndex] = [];
-          }
-
-          resultArray[movieIndex].push(item);
-
-          return resultArray;
-        }, []);
-
-        console.log(movieData);
-
-        this.setState({
-          ...this.state,
-          isLoading: false,
-          movies: movieData,
-        });
+      const response1 = await fetch(
+        "https://bework-production.up.railway.app/netflix"
+      );
+      if (response1.ok) {
+        const unboxedResponse1 = await response1.json();
+        setMovies(unboxedResponse1);
       } else {
-        this.setState({
-          ...this.state,
-          isError: true,
-          isLoading: false,
-        });
+        console.log("Error! Danger! Run!");
       }
-    } catch (e) {
-      this.setState({
-        ...this.state,
-        isError: true,
-        isLoading: false,
-      });
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  componentDidMount() {
-    this.fetchMovies();
-  }
+  useEffect(() => {
+    movieSearch();
+    console.log(movies);
+  }, []);
 
-  render() {
-    return (
-      <div className="movie-gallery m-2">
-        <h5 className="text-light mt-2 mb-2">{this.props.search}</h5>
+  return (
+    <>
+      <div className="d-flex justify-content-center align-items-center"></div>
+      <h3>Popular on Netflix:</h3>
+      <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+        {movies.map((movie) => (
+          <a href="#">
+            <img src={movie.poster} alt="" />
+          </a>
+        ))}
+      </Row>
+    </>
+  );
+};
 
-        {this.state.isLoading && <Spinner></Spinner>}
-
-        {this.state.isError && <Error></Error>}
-
-        {!this.state.isLoading && !this.state.isError && (
-          <Carousel>
-            {this.state.movies.map((movies) => (
-              <Carousel.Item>
-                <div className="movie-row">
-                  <Row>
-                    {movies.map((movie) => (
-                      <Col md={2}>
-                        <a href="#">
-                          <img src={movie.Poster} />
-                        </a>
-                      </Col>
-                    ))}
-                  </Row>
-                </div>
-              </Carousel.Item>
-            ))}
-          </Carousel>
-        )}
-      </div>
-    );
-  }
-}
+export default SingleCarousel;

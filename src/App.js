@@ -16,9 +16,7 @@ function App() {
     >
       <MyNavbar />
       <MyTitle />
-      <SingleCarousel search="Action" />
-      <SingleCarousel search="Anime" />
-      <SingleCarousel search="Horror" />
+      <SingleCarousel />
       <MyFooter />
     </div>
   );
