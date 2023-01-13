@@ -35,6 +35,7 @@ const SingleCarousel = () => {
         {movies.map((movie) => (
           <a className="m-1" href="#">
             <img style={{ maxWidth: "20rem" }} src={movie.poster} alt="" />
+            <h5>{movie.title}</h5>
           </a>
         ))}
       </Row>
